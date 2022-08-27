@@ -26,6 +26,7 @@ for i=1:1:Nt
     h=R*(1+sin(omega*t));
     x=v*t+R*(1-cos(omega*t));
     h2=plot(x,h,'r.','markersize',20);
+    h3=plot(x,h,'g.','markersize',20);
     xlim([0,xmax]);
 %     ylim([0,R]);
     axis equal;
@@ -47,6 +48,7 @@ for i=1:1:Nt
     ylabel('y');    
     print('-dpng', [dir_name '\' 'fig' num2str(i,'%.4d')], '-r300');
     delete(h1);
+    delete(h3);
 end
 
 %% make viedo
