@@ -2,43 +2,37 @@
 % Author: Zhang, Haowei, changhw@zju.edu.cn
 clear all;
 close all;
+url='https://github.com/changhw/high-school-physics';
+dir_name = 'circle';
+mkdir(dir_name);
+xmax=30;
+tmax=30;
+Nt = 100;
+t1d=linspace(0,tmax,Nt);
+plot(linspace(0,xmax,100), linspace(0,xmax,100)*0, 'k-', 'LineWidth', 2); hold on;
+
 v=1;
 R=2;
 omega=v/R;
-
 theta=linspace(0, 2*pi, 1000);
-xCircle=R+R*cos(theta);xCircle0=xCircle;
-yCircle=R+R*sin(theta);
-xmax=30;
-figure;
-xlim([0,xmax]);
-ylim([0,R]);
-Nt = 100;
-t1d=linspace(0,30,Nt);
-
-url='https://github.com/changhw/High-School-physics-material';
-
-dir_name = 'circle';
-mkdir(dir_name);
+xCircle0=R+R*cos(theta);
+yCircle0=R+R*sin(theta);
 
 for i=1:1:Nt
     t=t1d(i);
     xCircle = xCircle0 + v*t;
-    h1=plot(xCircle, yCircle,'k-','LineWidth', 2);
+    yCircle = yCircle0;
+    h1=plot(xCircle, yCircle,'b-','LineWidth', 2);
     h=R*(1+sin(omega*t));
     x=v*t+R*(1-cos(omega*t));
-    hold on;
     h2=plot(x,h,'r.','markersize',20);
     xlim([0,xmax]);
-    ylim([0,R]);
+%     ylim([0,R]);
     axis equal;
     grid on;
-    drawnow;
-    xlabel('x');
-    ylabel('y');
     if i ==1
         annotation(gcf,'textbox',...
-        [0.202857142857141 0.170904763040092 0.11222221910717 0.0619047607694353],...
+        [0.25 0.17 0.11 0.062],...
         'String',url,...
         'Color', 'red',...
         'LineStyle','none',...
@@ -48,6 +42,9 @@ for i=1:1:Nt
         'FontName','Times New Roman',...
         'FitBoxToText','off');
     end
+    drawnow;
+    xlabel('x');
+    ylabel('y');    
     print('-dpng', [dir_name '\' 'fig' num2str(i,'%.4d')], '-r300');
     delete(h1);
 end
