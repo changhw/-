@@ -16,6 +16,8 @@ ylim([0,R]);
 Nt = 100;
 t1d=linspace(0,30,Nt);
 
+url='https://github.com/changhw/High-School-physics-material';
+
 dir_name = 'circle';
 mkdir(dir_name);
 
@@ -32,6 +34,20 @@ for i=1:1:Nt
     axis equal;
     grid on;
     drawnow;
+    xlabel('x');
+    ylabel('y');
+    if i ==1
+        annotation(gcf,'textbox',...
+        [0.202857142857141 0.170904763040092 0.11222221910717 0.0619047607694353],...
+        'String',url,...
+        'Color', 'red',...
+        'LineStyle','none',...
+        'Interpreter','latex',...
+        'FontWeight','bold',...
+        'FontSize',10,...
+        'FontName','Times New Roman',...
+        'FitBoxToText','off');
+    end
     print('-dpng', [dir_name '\' 'fig' num2str(i,'%.4d')], '-r300');
     delete(h1);
 end
