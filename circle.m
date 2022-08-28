@@ -7,7 +7,7 @@ dir_name = 'circle';
 mkdir(dir_name);
 xmax=30;
 tmax=30;
-Nt = 100;
+Nt = 200;
 t1d=linspace(0,tmax,Nt);
 plot(linspace(0,xmax,100), linspace(0,xmax,100)*0, 'k-', 'LineWidth', 2); hold on;
 
@@ -22,11 +22,11 @@ for i=1:1:Nt
     t=t1d(i);
     xCircle = xCircle0 + v*t;
     yCircle = yCircle0;
-    h1=plot(xCircle, yCircle,'b-','LineWidth', 2);
+    h1=plot(xCircle, yCircle,'k-','LineWidth', 2);
     h=R*(1+sin(omega*t));
     x=v*t+R*(1-cos(omega*t));
-    h2=plot(x,h,'r.','markersize',20);
-    h3=plot(x,h,'g.','markersize',20);
+    h2=plot(x,h,'b.','markersize',10);
+    h3=plot(x,h,'b*','markersize',7);
     xlim([0,xmax]);
 %     ylim([0,R]);
     axis equal;
@@ -53,7 +53,7 @@ end
 
 %% make viedo
 WriterObj=VideoWriter([dir_name '\' 'circle.avi']);
-WriterObj.FrameRate = 10;
+WriterObj.FrameRate = 20;
 open(WriterObj);
 for i=1:1:Nt
     frame=imread([dir_name '\' 'fig' num2str(i,'%.4d') '.png']);
